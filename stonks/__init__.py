@@ -2,6 +2,8 @@ from os import system, name
 from time import sleep
 from random import randrange
 
+import winsound
+
 WIDTH = 175
 HEIGHT = 54
 
@@ -58,7 +60,13 @@ def main():
     buffer = Buffer()
     stonk = Stonk(0)
     buffer.clear()
+
+    i = 0
     while len(stonk.history) < WIDTH - 3:
+        if i >= 10:
+            winsound.PlaySound("*", winsound.SND_NOWAIT)
+            i = 0
+        i += 1
         sleep(0.01)
         print(STONKS)
         for idx, value in enumerate(stonk.history):
